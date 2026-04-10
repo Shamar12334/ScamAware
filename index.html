@@ -3,581 +3,408 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-    <!-- Primary Meta -->
     <title>PolicyPal – Privacy & Security Analysis Platform</title>
-    <meta name="description" content="Enterprise-grade phishing detection and privacy policy analysis. Analyse URLs, scan images, and decode privacy policies in seconds." />
-    <meta name="theme-color" content="#1e293b" />
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="PolicyPal – Privacy & Security Analysis Platform" />
-    <meta property="og:description" content="Detect phishing links, scan images, and summarise privacy policies with AI-powered analysis." />
-
-    <!-- Fonts -->
+    <meta name="description" content="Detect phishing links, scan images, and decode privacy policies instantly." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-
-    <!-- Stylesheet -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
 
-    <!-- ── Skip link ─────────────────────────────────────────────────────── -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <!-- ════════════════════════════════════════════════════════════════════ -->
-    <!--  TOP BAR                                                             -->
-    <!-- ════════════════════════════════════════════════════════════════════ -->
-    <header class="topbar" role="banner">
+    <!-- ══ TOP BAR ══════════════════════════════════════════════════════ -->
+    <header class="topbar">
       <div class="topbar__inner">
-
-        <!-- Brand -->
-        <a href="/" class="brand" aria-label="PolicyPal home">
-          <span class="brand__logo" aria-hidden="true">🛡️</span>
+        <a href="/" class="brand">
+          <span class="brand__logo">🛡️</span>
           <div class="brand__text">
             <span class="brand__name">PolicyPal</span>
             <span class="brand__tagline">Privacy &amp; Security Assistant</span>
           </div>
         </a>
 
-        <!-- Global status indicator -->
-        <div class="topbar__meta" aria-label="System status">
-          <span class="status-badge status-badge--online" role="status" aria-live="polite">
-            <span class="status-badge__dot" aria-hidden="true"></span>
-            All systems operational
-          </span>
+        <div class="status-badge">
+          <span class="status-badge__dot"></span>
+          All systems operational
         </div>
 
-        <!-- Top-right actions -->
-        <nav class="topbar__actions" aria-label="Account actions">
-          <button id="btn-docs" class="btn btn--ghost btn--sm" type="button">Docs</button>
-          <button id="btn-history" class="btn btn--ghost btn--sm" type="button">
-            <span aria-hidden="true">🕓</span> History
-          </button>
-          <button id="btn-settings" class="btn btn--outline btn--sm" type="button" aria-label="Settings">
-            ⚙️ Settings
-          </button>
+        <nav class="topbar__actions">
+          <button class="btn btn--ghost btn--sm" type="button">Docs</button>
+          <button class="btn btn--ghost btn--sm" type="button">History</button>
+          <button class="btn btn--outline btn--sm" type="button">⚙️ Settings</button>
         </nav>
-
       </div>
     </header>
 
-    <!-- ════════════════════════════════════════════════════════════════════ -->
-    <!--  PAGE SHELL                                                           -->
-    <!-- ════════════════════════════════════════════════════════════════════ -->
-    <div class="page-shell">
+    <!-- ══ PAGE SHELL ════════════════════════════════════════════════════ -->
+    <main class="page-shell">
       <div class="container">
 
-        <!-- ── Section heading ─────────────────────────────────────────── -->
-        <section class="page-intro" aria-labelledby="page-heading">
-          <h1 id="page-heading" class="page-intro__title">
-            Security Analysis Dashboard
-          </h1>
+        <!-- Page heading -->
+        <section class="page-intro">
+          <h1 class="page-intro__title">Security Analysis Dashboard</h1>
           <p class="page-intro__sub">
             Paste a link, upload a screenshot, or drop in a privacy policy —
-            PolicyPal will surface hidden risks in seconds.
+            get an instant AI-powered risk assessment.
           </p>
         </section>
 
-        <!-- ── Tab Navigation ─────────────────────────────────────────── -->
-        <div class="workspace" id="main-content">
+        <!-- ══ MAIN GRID (1fr / 1fr) ════════════════════════════════════ -->
+        <div class="main-container">
 
-          <nav class="tab-nav" role="tablist" aria-label="Analysis tools">
-            <button
-              id="tab-check-link"
-              class="tab-nav__btn tab-nav__btn--active"
-              role="tab"
-              aria-selected="true"
-              aria-controls="panel-check-link"
-              data-tab="check-link"
-              type="button"
-            >
-              <span class="tab-nav__icon" aria-hidden="true">🔗</span>
-              <span class="tab-nav__label">Check Link</span>
-              <span class="tab-nav__desc">Phishing URL detection</span>
-            </button>
+          <!-- ╔══════════════════════════════╗ -->
+          <!-- ║  LEFT COLUMN — INPUT         ║ -->
+          <!-- ╚══════════════════════════════╝ -->
+          <div class="left-col">
 
-            <button
-              id="tab-scan-image"
-              class="tab-nav__btn"
-              role="tab"
-              aria-selected="false"
-              aria-controls="panel-scan-image"
-              data-tab="scan-image"
-              tabindex="-1"
-              type="button"
-            >
-              <span class="tab-nav__icon" aria-hidden="true">🖼️</span>
-              <span class="tab-nav__label">Scan Image</span>
-              <span class="tab-nav__desc">OCR &amp; pattern analysis</span>
-            </button>
+            <!-- Tab navigation -->
+            <nav class="tab-nav" role="tablist" aria-label="Analysis tools">
+              <button id="tab-check-link"  class="tab-nav__btn tab-nav__btn--active"
+                role="tab" aria-selected="true"  aria-controls="panel-check-link"
+                data-tab="check-link" type="button">
+                <span class="tab-nav__icon">🔗</span> Check Link
+              </button>
+              <button id="tab-scan-image"  class="tab-nav__btn"
+                role="tab" aria-selected="false" aria-controls="panel-scan-image"
+                data-tab="scan-image" tabindex="-1" type="button">
+                <span class="tab-nav__icon">🖼️</span> Scan Image
+              </button>
+              <button id="tab-read-policy" class="tab-nav__btn"
+                role="tab" aria-selected="false" aria-controls="panel-read-policy"
+                data-tab="read-policy" tabindex="-1" type="button">
+                <span class="tab-nav__icon">📄</span> Read Policy
+              </button>
+            </nav>
 
-            <button
-              id="tab-read-policy"
-              class="tab-nav__btn"
-              role="tab"
-              aria-selected="false"
-              aria-controls="panel-read-policy"
-              data-tab="read-policy"
-              tabindex="-1"
-              type="button"
-            >
-              <span class="tab-nav__icon" aria-hidden="true">📄</span>
-              <span class="tab-nav__label">Read Policy</span>
-              <span class="tab-nav__desc">Plain-English summaries</span>
-            </button>
-          </nav>
+            <!-- ── Panel 1: Check Link ─────────────────────────────── -->
+            <section id="panel-check-link"
+              class="input-card panel--active"
+              role="tabpanel" aria-labelledby="tab-check-link">
 
-          <!-- ── Tab Panels ──────────────────────────────────────────── -->
-          <main class="tab-panels" aria-label="Analysis panel">
+              <div class="input-card__header">
+                <h2 class="input-card__title">Analyse a URL</h2>
+                <p class="input-card__desc">
+                  Paste any link to check for phishing indicators, suspicious
+                  redirects, and known malicious domains.
+                </p>
+              </div>
 
-            <!-- ┌──────────────────────────────────────────────────────┐ -->
-            <!-- │  PANEL 1 · CHECK LINK                                │ -->
-            <!-- └──────────────────────────────────────────────────────┘ -->
-            <section
-              id="panel-check-link"
-              class="panel panel--active"
-              role="tabpanel"
-              aria-labelledby="tab-check-link"
-              tabindex="0"
-            >
-              <div class="panel__two-col">
-
-                <!-- Left column: Input -->
-                <div class="panel__col panel__col--input">
-                  <header class="panel__header">
-                    <h2 class="panel__title">Link Analyser</h2>
-                    <p class="panel__subtitle">
-                      Enter any URL to check for phishing indicators, suspicious
-                      redirects, and known malicious domains.
-                    </p>
-                  </header>
-
-                  <form
-                    id="form-check-link"
-                    class="analysis-form"
-                    novalidate
-                    aria-label="URL phishing checker"
-                  >
-                    <div class="field">
-                      <label for="url-input" class="field__label">
-                        URL to analyse
-                        <span class="field__required" aria-hidden="true">*</span>
-                      </label>
-                      <div class="field__input-row">
-                        <span class="field__adornment field__adornment--left" aria-hidden="true">🌐</span>
-                        <input
-                          id="url-input"
-                          class="field__input field__input--with-adornment"
-                          type="url"
-                          name="url"
-                          placeholder="https://suspicious-website.com/login"
-                          autocomplete="off"
-                          autocorrect="off"
-                          autocapitalize="none"
-                          spellcheck="false"
-                          aria-required="true"
-                          aria-describedby="url-hint url-error"
-                        />
-                        <button
-                          id="btn-paste-url"
-                          class="field__action-btn"
-                          type="button"
-                          aria-label="Paste from clipboard"
-                        >
-                          Paste
-                        </button>
-                      </div>
-                      <p id="url-hint" class="field__hint">
-                        Supports http://, https://, and shortened URLs (bit.ly, t.co, etc.)
-                      </p>
-                      <p id="url-error" class="field__error" role="alert" aria-live="assertive" hidden></p>
-                    </div>
-
-                    <!-- Options row -->
-                    <fieldset class="options-row" aria-label="Analysis options">
-                      <legend class="options-row__legend">Options</legend>
-                      <label class="checkbox-label">
-                        <input class="checkbox-input" type="checkbox" name="opt-follow-redirects" checked />
-                        <span class="checkbox-text">Follow redirects</span>
-                      </label>
-                      <label class="checkbox-label">
-                        <input class="checkbox-input" type="checkbox" name="opt-check-ssl" checked />
-                        <span class="checkbox-text">Check SSL certificate</span>
-                      </label>
-                      <label class="checkbox-label">
-                        <input class="checkbox-input" type="checkbox" name="opt-check-reputation" checked />
-                        <span class="checkbox-text">Reputation databases</span>
-                      </label>
-                    </fieldset>
-
-                    <div class="form-actions">
-                      <button id="btn-check-link" class="btn btn--primary" type="submit">
-                        <span aria-hidden="true">⚡</span>
-                        Analyse Link
-                      </button>
-                      <button id="btn-clear-link" class="btn btn--ghost" type="reset">
-                        Clear
-                      </button>
-                    </div>
-                  </form>
-
-                  <!-- Recent history -->
-                  <aside class="history-widget" aria-label="Recent link checks">
-                    <h3 class="history-widget__title">Recent Checks</h3>
-                    <ol
-                      id="history-list-links"
-                      class="history-widget__list"
-                      aria-label="Link check history"
-                    >
-                      <li class="history-widget__empty">
-                        No recent checks. Paste a URL above to get started.
-                      </li>
-                    </ol>
-                  </aside>
+              <form id="form-check-link" class="input-form" novalidate>
+                <div class="field">
+                  <div class="field__label-row">
+                    <label for="url-input" class="field__label">URL to analyse</label>
+                    <span class="field__shortcut" title="Press Enter to submit">↵ Enter to analyse</span>
+                  </div>
+                  <!-- Desktop-optimised: 48px height, 18px font, full-width -->
+                  <div class="url-input-wrap">
+                    <span class="url-input-wrap__globe">🌐</span>
+                    <input
+                      id="url-input"
+                      class="url-input"
+                      type="url"
+                      placeholder="https://suspicious-site.com/login"
+                      autocomplete="off"
+                      autocorrect="off"
+                      autocapitalize="none"
+                      spellcheck="false"
+                      aria-describedby="url-hint"
+                    />
+                    <button class="url-input-wrap__paste" type="button" id="btn-paste-url"
+                      title="Paste from clipboard (Ctrl+V)">
+                      📋 Paste
+                    </button>
+                    <button class="url-input-wrap__clear" type="button" id="btn-clear-url"
+                      aria-label="Clear URL" hidden>✕</button>
+                  </div>
+                  <p id="url-hint" class="field__hint">Supports http, https, and shortened URLs (bit.ly, t.co, etc.)</p>
                 </div>
 
-                <!-- Right column: Results -->
-                <div
-                  id="result-check-link"
-                  class="panel__col panel__col--result"
-                  aria-live="polite"
-                  aria-atomic="true"
-                  aria-label="Link analysis results"
-                >
-                  <div class="result-empty-state">
-                    <span class="result-empty-state__icon" aria-hidden="true">🔍</span>
-                    <h3 class="result-empty-state__title">Awaiting analysis</h3>
-                    <p class="result-empty-state__body">
-                      Enter a URL on the left and click <strong>Analyse Link</strong>
-                      to see a full risk report here.
+                <button id="btn-check-link" class="btn btn--primary btn--analyze" type="submit">
+                  ⚡ Analyze Link
+                </button>
+              </form>
+
+              <!-- Example buttons -->
+              <div class="examples">
+                <span class="examples__label">Try an example:</span>
+                <div class="examples__btns">
+                  <button class="example-btn example-btn--safe" data-type="safe"
+                    data-value="https://google.com" type="button">
+                    ✅ Safe site
+                  </button>
+                  <button class="example-btn example-btn--danger" data-type="danger"
+                    data-value="http://paypa1-login.ru/verify" type="button">
+                    🚨 Phishing URL
+                  </button>
+                  <button class="example-btn example-btn--warning" data-type="warning"
+                    data-value="https://bit.ly/3xUnknown" type="button">
+                    ⚠️ Shortened URL
+                  </button>
+                </div>
+              </div>
+
+            </section>
+
+            <!-- ── Panel 2: Scan Image ──────────────────────────────── -->
+            <section id="panel-scan-image"
+              class="input-card"
+              role="tabpanel" aria-labelledby="tab-scan-image" hidden>
+
+              <div class="input-card__header">
+                <h2 class="input-card__title">Scan a Screenshot</h2>
+                <p class="input-card__desc">
+                  Upload an image of a suspicious email, SMS, or webpage.
+                  PolicyPal extracts text and spots phishing patterns.
+                </p>
+              </div>
+
+              <form id="form-scan-image" class="input-form" novalidate>
+
+                <!-- Large desktop drop zone: 320px min-height -->
+                <div id="drop-zone" class="drop-zone drop-zone--lg" role="button" tabindex="0"
+                  aria-label="Drag and drop an image, or click Browse Files">
+                  <div class="drop-zone__inner">
+                    <div class="drop-zone__ring">
+                      <span class="drop-zone__icon">🖼️</span>
+                    </div>
+                    <p class="drop-zone__primary">Drag &amp; drop your screenshot here</p>
+                    <p class="drop-zone__secondary">
+                      Supports emails, SMS screenshots, browser windows
                     </p>
-                    <ul class="result-empty-state__checklist" aria-label="What we check">
-                      <li>✦ Domain age &amp; registrar reputation</li>
-                      <li>✦ SSL validity &amp; issuer trust</li>
-                      <li>✦ Redirect chain inspection</li>
-                      <li>✦ Malware &amp; phishing database lookup</li>
-                    </ul>
+                    <label for="image-input" class="btn btn--outline">
+                      📂 Browse Files
+                      <input id="image-input" class="sr-only" type="file"
+                        accept="image/png,image/jpeg,image/webp,image/gif" />
+                    </label>
+                    <p class="drop-zone__hint">PNG · JPG · WEBP · GIF &nbsp;|&nbsp; Max 10 MB</p>
                   </div>
                 </div>
 
-              </div><!-- /.panel__two-col -->
+                <!-- Preview (hidden until file chosen) -->
+                <figure id="image-preview-container" class="image-preview" hidden>
+                  <div class="image-preview__toolbar">
+                    <span id="image-preview-caption" class="image-preview__name"></span>
+                    <button class="image-preview__remove" type="button"
+                      id="btn-remove-image" aria-label="Remove image">✕ Remove</button>
+                  </div>
+                  <img id="image-preview-img" src="" alt="Selected image preview" />
+                </figure>
+
+                <button id="btn-scan-image" class="btn btn--primary btn--analyze"
+                  type="submit" disabled>
+                  🔍 Analyze Screenshot
+                </button>
+              </form>
+
+              <!-- Example buttons -->
+              <div class="examples">
+                <span class="examples__label">Try an example:</span>
+                <div class="examples__btns">
+                  <button class="example-btn" type="button">📧 Phishing email</button>
+                  <button class="example-btn" type="button">📱 Fake SMS</button>
+                  <button class="example-btn" type="button">🌐 Fake login page</button>
+                </div>
+              </div>
+
             </section>
 
-            <!-- ┌──────────────────────────────────────────────────────┐ -->
-            <!-- │  PANEL 2 · SCAN IMAGE                                │ -->
-            <!-- └──────────────────────────────────────────────────────┘ -->
-            <section
-              id="panel-scan-image"
-              class="panel"
-              role="tabpanel"
-              aria-labelledby="tab-scan-image"
-              tabindex="0"
-              hidden
-            >
-              <div class="panel__two-col">
+            <!-- ── Panel 3: Read Policy ─────────────────────────────── -->
+            <section id="panel-read-policy"
+              class="input-card"
+              role="tabpanel" aria-labelledby="tab-read-policy" hidden>
 
-                <!-- Left column: Input -->
-                <div class="panel__col panel__col--input">
-                  <header class="panel__header">
-                    <h2 class="panel__title">Image Scanner</h2>
-                    <p class="panel__subtitle">
-                      Upload a screenshot of a suspicious email, SMS, or webpage.
-                      PolicyPal extracts text via OCR and identifies phishing patterns.
-                    </p>
-                  </header>
+              <div class="input-card__header">
+                <h2 class="input-card__title">Analyse a Privacy Policy</h2>
+                <p class="input-card__desc">
+                  Paste a URL or raw text. Get a plain-English summary with
+                  key data practices and risk flags highlighted.
+                </p>
+              </div>
 
-                  <form
-                    id="form-scan-image"
-                    class="analysis-form"
-                    novalidate
-                    aria-label="Image phishing scanner"
-                  >
-                    <!-- Drop zone -->
-                    <div
-                      id="drop-zone"
-                      class="drop-zone"
-                      role="button"
-                      tabindex="0"
-                      aria-label="Image upload area. Click to browse or drag and drop a file."
-                      aria-describedby="drop-zone-hint image-error"
-                    >
-                      <div class="drop-zone__content">
-                        <span class="drop-zone__icon" aria-hidden="true">📂</span>
-                        <p class="drop-zone__primary">Drop an image here</p>
-                        <p class="drop-zone__secondary">or</p>
-                        <label for="image-input" class="btn btn--outline btn--sm">
-                          Browse Files
-                          <input
-                            id="image-input"
-                            class="sr-only"
-                            type="file"
-                            name="image"
-                            accept="image/png,image/jpeg,image/webp,image/gif"
-                            aria-describedby="drop-zone-hint image-error"
-                          />
-                        </label>
-                        <p id="drop-zone-hint" class="drop-zone__hint">
-                          PNG, JPG, WEBP or GIF · Max 10 MB
-                        </p>
-                      </div>
-                    </div>
-                    <p id="image-error" class="field__error" role="alert" aria-live="assertive" hidden></p>
+              <!-- Input mode toggle -->
+              <div class="seg-control" role="group" aria-label="Input mode">
+                <button class="seg-control__btn seg-control__btn--active"
+                  data-mode="url" type="button">🔗 URL</button>
+                <button class="seg-control__btn"
+                  data-mode="paste" type="button">📋 Paste Text</button>
+              </div>
 
-                    <!-- Preview area (hidden until file selected) -->
-                    <figure
-                      id="image-preview-container"
-                      class="image-preview"
-                      hidden
-                      aria-label="Selected image preview"
-                    >
-                      <img
-                        id="image-preview-img"
-                        class="image-preview__img"
-                        src=""
-                        alt="Preview of the selected image"
-                      />
-                      <figcaption id="image-preview-caption" class="image-preview__caption"></figcaption>
-                    </figure>
+              <form id="form-read-policy" class="input-form" novalidate>
 
-                    <div class="form-actions">
-                      <button id="btn-scan-image" class="btn btn--primary" type="submit" disabled>
-                        <span aria-hidden="true">🔍</span>
-                        Scan Image
-                      </button>
-                      <button id="btn-clear-image" class="btn btn--ghost" type="reset">
-                        Clear
-                      </button>
-                    </div>
-                  </form>
+                <!-- URL mode -->
+                <div class="field" id="policy-url-group">
+                  <div class="field__label-row">
+                    <label for="policy-url-input" class="field__label">Policy URL</label>
+                    <span class="field__shortcut">↵ Enter to fetch</span>
+                  </div>
+                  <div class="url-input-wrap">
+                    <span class="url-input-wrap__globe">🌐</span>
+                    <input
+                      id="policy-url-input"
+                      class="url-input"
+                      type="url"
+                      placeholder="https://example.com/privacy-policy"
+                      autocomplete="off"
+                      autocorrect="off"
+                      autocapitalize="none"
+                    />
+                  </div>
+                  <p class="field__hint">Must be a publicly accessible URL</p>
                 </div>
 
-                <!-- Right column: Results -->
-                <div
-                  id="result-scan-image"
-                  class="panel__col panel__col--result"
-                  aria-live="polite"
-                  aria-atomic="true"
-                  aria-label="Image scan results"
-                >
-                  <div class="result-empty-state">
-                    <span class="result-empty-state__icon" aria-hidden="true">🖼️</span>
-                    <h3 class="result-empty-state__title">No image scanned yet</h3>
-                    <p class="result-empty-state__body">
-                      Upload a screenshot on the left to see extracted text and
-                      a phishing risk assessment.
-                    </p>
-                    <ul class="result-empty-state__checklist" aria-label="What we check">
-                      <li>✦ OCR text extraction</li>
-                      <li>✦ Urgency &amp; fear-based language detection</li>
-                      <li>✦ Embedded URL identification</li>
-                      <li>✦ Brand impersonation signals</li>
-                    </ul>
+                <!-- Paste mode (hidden by default) -->
+                <div class="field" id="policy-paste-group" hidden>
+                  <div class="field__label-row">
+                    <label for="policy-text-input" class="field__label">Policy Text</label>
+                    <!-- Character counter (updated by script.js) -->
+                    <span class="char-counter" id="policy-char-counter" aria-live="polite">
+                      <span id="char-count">0</span> characters
+                    </span>
+                  </div>
+                  <!-- Large desktop textarea: 12 rows, comfortable for pasting -->
+                  <textarea
+                    id="policy-text-input"
+                    class="policy-textarea"
+                    rows="12"
+                    placeholder="Paste the full privacy policy or terms of service text here…
+
+Tip: Select all (Ctrl+A) on the policy page, copy, then paste here."
+                    aria-describedby="policy-text-hint"
+                  ></textarea>
+                  <div class="policy-textarea-footer">
+                    <p id="policy-text-hint" class="field__hint">Minimum 200 characters for accurate analysis</p>
+                    <button class="btn btn--ghost btn--sm" type="button" id="btn-clear-policy-text">Clear</button>
                   </div>
                 </div>
 
-              </div><!-- /.panel__two-col -->
+                <button id="btn-read-policy" class="btn btn--primary btn--analyze" type="submit">
+                  🤖 Analyze Policy
+                </button>
+              </form>
+
+              <!-- Example buttons -->
+              <div class="examples">
+                <span class="examples__label">Load an example:</span>
+                <div class="examples__btns">
+                  <button class="example-btn"
+                    data-value="https://policies.google.com/privacy"
+                    type="button">Google</button>
+                  <button class="example-btn"
+                    data-value="https://www.tiktok.com/legal/page/us/privacy-policy/en"
+                    type="button">TikTok</button>
+                  <button class="example-btn"
+                    data-value="https://twitter.com/en/privacy"
+                    type="button">X / Twitter</button>
+                  <button class="example-btn"
+                    data-value="https://www.facebook.com/privacy/policy/"
+                    type="button">Meta</button>
+                </div>
+              </div>
+
             </section>
 
-            <!-- ┌──────────────────────────────────────────────────────┐ -->
-            <!-- │  PANEL 3 · READ POLICY                               │ -->
-            <!-- └──────────────────────────────────────────────────────┘ -->
-            <section
-              id="panel-read-policy"
-              class="panel"
-              role="tabpanel"
-              aria-labelledby="tab-read-policy"
-              tabindex="0"
-              hidden
-            >
-              <div class="panel__two-col">
+          </div><!-- /.left-col -->
 
-                <!-- Left column: Input -->
-                <div class="panel__col panel__col--input">
-                  <header class="panel__header">
-                    <h2 class="panel__title">Policy Analyser</h2>
-                    <p class="panel__subtitle">
-                      Paste a privacy policy URL or raw text to receive a
-                      plain-English summary with key data practices highlighted.
-                    </p>
-                  </header>
+          <!-- ╔══════════════════════════════╗ -->
+          <!-- ║  RIGHT COLUMN — RESULTS      ║ -->
+          <!-- ╚══════════════════════════════╝ -->
+          <div class="right-col" id="results-panel" aria-live="polite" aria-atomic="true">
 
-                  <form
-                    id="form-read-policy"
-                    class="analysis-form"
-                    novalidate
-                    aria-label="Privacy policy analyser"
-                  >
-                    <!-- Input mode toggle -->
-                    <fieldset class="segmented-control" id="policy-mode-fieldset">
-                      <legend class="segmented-control__legend">Input mode</legend>
-                      <div class="segmented-control__track" role="group">
-                        <label class="segmented-control__option">
-                          <input
-                            class="segmented-control__radio"
-                            type="radio"
-                            name="policy-mode"
-                            value="url"
-                            checked
-                          />
-                          <span class="segmented-control__label">🔗 URL</span>
-                        </label>
-                        <label class="segmented-control__option">
-                          <input
-                            class="segmented-control__radio"
-                            type="radio"
-                            name="policy-mode"
-                            value="paste"
-                          />
-                          <span class="segmented-control__label">📋 Paste Text</span>
-                        </label>
-                      </div>
-                    </fieldset>
+            <!-- ── Placeholder (shown before first analysis) ──────── -->
+            <div class="results-placeholder" id="results-placeholder">
+              <span class="results-placeholder__icon">🛡️</span>
+              <h3 class="results-placeholder__title">Results will appear here</h3>
+              <p class="results-placeholder__body">
+                Choose a tool on the left, enter your data, and click Analyze
+                to see a full risk report.
+              </p>
+              <ul class="results-placeholder__list">
+                <li>⚡ Instant AI analysis</li>
+                <li>🔍 Detailed risk breakdown</li>
+                <li>🚩 Specific red flag detection</li>
+                <li>📊 Colour-coded risk score</li>
+              </ul>
+            </div>
 
-                    <!-- URL input -->
-                    <div class="field" id="policy-url-group">
-                      <label for="policy-url-input" class="field__label">
-                        Policy URL
-                        <span class="field__required" aria-hidden="true">*</span>
-                      </label>
-                      <div class="field__input-row">
-                        <span class="field__adornment field__adornment--left" aria-hidden="true">🌐</span>
-                        <input
-                          id="policy-url-input"
-                          class="field__input field__input--with-adornment"
-                          type="url"
-                          name="policy-url"
-                          placeholder="https://example.com/privacy-policy"
-                          autocomplete="off"
-                          autocorrect="off"
-                          autocapitalize="none"
-                          aria-required="true"
-                          aria-describedby="policy-url-hint policy-url-error"
-                        />
-                      </div>
-                      <p id="policy-url-hint" class="field__hint">
-                        Must be a publicly accessible URL.
-                      </p>
-                      <p id="policy-url-error" class="field__error" role="alert" aria-live="assertive" hidden></p>
-                    </div>
+            <!-- ── Results content (hidden until analysis runs) ────── -->
+            <div class="results-content" id="results-content" hidden>
 
-                    <!-- Paste input (hidden by default, toggled by JS) -->
-                    <div class="field" id="policy-paste-group" hidden>
-                      <label for="policy-text-input" class="field__label">
-                        Policy Text
-                        <span class="field__required" aria-hidden="true">*</span>
-                      </label>
-                      <textarea
-                        id="policy-text-input"
-                        class="field__textarea"
-                        name="policy-text"
-                        rows="10"
-                        placeholder="Paste the full privacy policy or terms of service text here…"
-                        aria-required="true"
-                        aria-describedby="policy-text-hint policy-text-error"
-                      ></textarea>
-                      <p id="policy-text-hint" class="field__hint">
-                        Minimum 200 characters for accurate analysis.
-                      </p>
-                      <p id="policy-text-error" class="field__error" role="alert" aria-live="assertive" hidden></p>
-                    </div>
-
-                    <div class="form-actions">
-                      <button id="btn-read-policy" class="btn btn--primary" type="submit">
-                        <span aria-hidden="true">🤖</span>
-                        Summarise Policy
-                      </button>
-                      <button id="btn-clear-policy" class="btn btn--ghost" type="reset">
-                        Clear
-                      </button>
-                    </div>
-                  </form>
-
-                  <!-- Risk legend -->
-                  <aside class="legend" aria-label="Risk level legend">
-                    <h3 class="legend__title">Risk levels</h3>
-                    <dl class="legend__list">
-                      <div class="legend__item">
-                        <dt>
-                          <span class="legend__badge legend__badge--safe" aria-label="Safe">●</span>
-                          Safe
-                        </dt>
-                        <dd>Standard, user-friendly data practices</dd>
-                      </div>
-                      <div class="legend__item">
-                        <dt>
-                          <span class="legend__badge legend__badge--warning" aria-label="Warning">●</span>
-                          Warning
-                        </dt>
-                        <dd>Broad data sharing or third-party tracking</dd>
-                      </div>
-                      <div class="legend__item">
-                        <dt>
-                          <span class="legend__badge legend__badge--danger" aria-label="Danger">●</span>
-                          Danger
-                        </dt>
-                        <dd>Invasive, deceptive, or non-compliant clauses</dd>
-                      </div>
-                    </dl>
-                  </aside>
+              <!-- 1. Risk badge -->
+              <div class="risk-badge" id="risk-badge">
+                <span class="risk-badge__icon" id="risk-badge-icon"></span>
+                <div>
+                  <p class="risk-badge__label" id="risk-badge-label"></p>
+                  <p class="risk-badge__url" id="risk-badge-url"></p>
                 </div>
+              </div>
 
-                <!-- Right column: Results -->
-                <div
-                  id="result-read-policy"
-                  class="panel__col panel__col--result"
-                  aria-live="polite"
-                  aria-atomic="true"
-                  aria-label="Policy analysis results"
-                >
-                  <div class="result-empty-state">
-                    <span class="result-empty-state__icon" aria-hidden="true">📄</span>
-                    <h3 class="result-empty-state__title">No policy analysed yet</h3>
-                    <p class="result-empty-state__body">
-                      Provide a policy URL or paste the text on the left to receive
-                      a structured plain-English breakdown.
-                    </p>
-                    <ul class="result-empty-state__checklist" aria-label="What we analyse">
-                      <li>✦ Data collection scope</li>
-                      <li>✦ Third-party sharing practices</li>
-                      <li>✦ User rights &amp; opt-outs</li>
-                      <li>✦ Data retention periods</li>
-                      <li>✦ GDPR / CCPA compliance signals</li>
-                    </ul>
-                  </div>
+              <!-- 2. Risk score bar -->
+              <div class="score-section">
+                <div class="score-header">
+                  <span class="score-label">Risk Score</span>
+                  <span class="score-value" id="score-value">0</span>
                 </div>
+                <div class="score-track" role="progressbar"
+                  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                  aria-label="Risk score">
+                  <div class="score-bar" id="score-bar"></div>
+                </div>
+                <div class="score-legend">
+                  <span>Safe</span>
+                  <span>Suspicious</span>
+                  <span>Dangerous</span>
+                </div>
+              </div>
 
-              </div><!-- /.panel__two-col -->
-            </section>
+              <!-- 3. AI analysis -->
+              <div class="analysis-section">
+                <h3 class="section-title">
+                  <span>🤖</span> AI Analysis
+                </h3>
+                <p class="analysis-text" id="analysis-text"></p>
+              </div>
 
-          </main><!-- /.tab-panels -->
-        </div><!-- /.workspace -->
+              <!-- 4. Red flags -->
+              <div class="flags-section" id="flags-section">
+                <h3 class="section-title">
+                  <span>🚩</span> Red Flags Detected
+                </h3>
+                <ul class="flags-list" id="flags-list"></ul>
+              </div>
 
+              <!-- 5. Details grid (populated per tool) -->
+              <div class="details-grid" id="details-grid"></div>
+
+            </div><!-- /#results-content -->
+
+            <!-- ── Loading state ────────────────────────────────────── -->
+            <div class="results-loading" id="results-loading" hidden>
+              <div class="spinner"></div>
+              <p class="results-loading__text">Analysing…</p>
+            </div>
+
+          </div><!-- /.right-col -->
+
+        </div><!-- /.main-container -->
       </div><!-- /.container -->
-    </div><!-- /.page-shell -->
+    </main>
 
-    <!-- ════════════════════════════════════════════════════════════════════ -->
-    <!--  FOOTER                                                              -->
-    <!-- ════════════════════════════════════════════════════════════════════ -->
-    <footer class="site-footer" role="contentinfo">
+    <!-- ══ FOOTER ════════════════════════════════════════════════════════ -->
+    <footer class="site-footer">
       <div class="container site-footer__inner">
         <p class="site-footer__copy">
-          &copy; <time datetime="2026">2026</time> PolicyPal. Built to keep you safer online.
+          &copy; <time datetime="2026">2026</time> PolicyPal — Built to keep you safer online.
         </p>
-        <nav class="site-footer__links" aria-label="Footer links">
+        <nav class="site-footer__links">
           <a href="#" class="site-footer__link">Privacy Policy</a>
-          <a href="#" class="site-footer__link">Terms of Service</a>
+          <a href="#" class="site-footer__link">Terms</a>
           <a href="#" class="site-footer__link">Report a Bug</a>
           <a href="#" class="site-footer__link">API Docs</a>
         </nav>
       </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="script.js" defer></script>
   </body>
 </html>
