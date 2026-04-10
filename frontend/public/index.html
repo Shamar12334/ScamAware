@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="PolicyPal — detect phishing links, scan suspicious images, and decode privacy policies in seconds." />
+    <meta name="theme-color" content="#1a56db" />
+
+    <!-- PWA -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="PolicyPal" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="PolicyPal" />
+    <meta property="og:description" content="Your Privacy & Security Assistant" />
+    <meta property="og:type" content="website" />
+
+    <!-- Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <title>PolicyPal — Your Privacy & Security Assistant</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+
+  <body>
+    <div id="app" class="app-shell">
+
+      <!-- ====== HEADER ====== -->
+      <header class="site-header" role="banner">
+        <div class="header-inner">
+          <div class="brand" aria-label="PolicyPal home">
+            <span class="brand-logo" role="img" aria-label="Shield">🛡️</span>
+            <div class="brand-text">
+              <span class="brand-name">PolicyPal</span>
+              <span class="brand-tagline">Your Privacy &amp; Security Assistant</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- ====== TAB NAVIGATION ====== -->
+      <nav class="tab-nav" role="tablist" aria-label="Main features">
+
+        <button
+          class="tab-btn tab-btn--active"
+          role="tab"
+          id="tab-link"
+          aria-controls="panel-link"
+          aria-selected="true"
+          type="button"
+        >
+          <span class="tab-icon" aria-hidden="true">🔗</span>
+          <span class="tab-label">Check Link</span>
+        </button>
+
+        <button
+          class="tab-btn"
+          role="tab"
+          id="tab-image"
+          aria-controls="panel-image"
+          aria-selected="false"
+          type="button"
+        >
+          <span class="tab-icon" aria-hidden="true">🖼️</span>
+          <span class="tab-label">Scan Image</span>
+        </button>
+
+        <button
+          class="tab-btn"
+          role="tab"
+          id="tab-policy"
+          aria-controls="panel-policy"
+          aria-selected="false"
+          type="button"
+        >
+          <span class="tab-icon" aria-hidden="true">📄</span>
+          <span class="tab-label">Read Policy</span>
+        </button>
+
+      </nav>
+
+      <!-- ====== MAIN CONTENT ====== -->
+      <main class="main-content" id="main-content">
+
+        <!-- Tab Panel: Check Link -->
+        <section
+          class="tab-panel tab-panel--active"
+          role="tabpanel"
+          id="panel-link"
+          aria-labelledby="tab-link"
+          tabindex="0"
+        >
+          <div class="panel-inner">
+            <h1 class="panel-title">Check a Link</h1>
+            <p class="panel-description">
+              Paste any URL below and PolicyPal will analyse it for phishing signals, suspicious domains, and known scam patterns.
+            </p>
+
+            <form class="check-form" aria-label="Link checker">
+              <label class="form-label" for="link-input">URL to check</label>
+              <div class="input-group">
+                <input
+                  class="form-input"
+                  type="url"
+                  id="link-input"
+                  name="url"
+                  placeholder="https://example.com"
+                  autocomplete="off"
+                  autocapitalize="none"
+                  spellcheck="false"
+                  aria-describedby="link-hint"
+                />
+                <button class="btn btn--primary" type="submit" aria-label="Analyse link">
+                  Analyse
+                </button>
+              </div>
+              <p class="form-hint" id="link-hint">Supports http and https URLs.</p>
+            </form>
+
+            <div class="result-area" id="link-result" aria-live="polite" aria-atomic="true" hidden>
+              <!-- Results injected by script.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab Panel: Scan Image -->
+        <section
+          class="tab-panel"
+          role="tabpanel"
+          id="panel-image"
+          aria-labelledby="tab-image"
+          tabindex="0"
+          hidden
+        >
+          <div class="panel-inner">
+            <h1 class="panel-title">Scan an Image</h1>
+            <p class="panel-description">
+              Upload a screenshot of a suspicious message, email, or QR code. PolicyPal will extract text and flag potential scams.
+            </p>
+
+            <form class="check-form" aria-label="Image scanner">
+              <label class="form-label upload-label" for="image-input">
+                <span class="upload-icon" aria-hidden="true">📁</span>
+                <span class="upload-text">Tap to choose an image</span>
+                <input
+                  class="form-input--file"
+                  type="file"
+                  id="image-input"
+                  name="image"
+                  accept="image/*"
+                  capture="environment"
+                  aria-describedby="image-hint"
+                />
+              </label>
+              <p class="form-hint" id="image-hint">JPG, PNG, WEBP or GIF · Max 10 MB</p>
+
+              <div class="image-preview" id="image-preview" aria-live="polite" hidden>
+                <img class="preview-img" id="preview-img" src="" alt="Selected image preview" />
+              </div>
+
+              <button class="btn btn--primary" type="submit" aria-label="Scan selected image" disabled>
+                Scan Image
+              </button>
+            </form>
+
+            <div class="result-area" id="image-result" aria-live="polite" aria-atomic="true" hidden>
+              <!-- Results injected by script.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab Panel: Read Policy -->
+        <section
+          class="tab-panel"
+          role="tabpanel"
+          id="panel-policy"
+          aria-labelledby="tab-policy"
+          tabindex="0"
+          hidden
+        >
+          <div class="panel-inner">
+            <h1 class="panel-title">Read a Privacy Policy</h1>
+            <p class="panel-description">
+              Paste a privacy policy URL or its raw text and PolicyPal will summarise the key data-collection and sharing practices in plain language.
+            </p>
+
+            <form class="check-form" aria-label="Policy reader">
+              <div class="toggle-group" role="group" aria-label="Input method">
+                <button class="toggle-btn toggle-btn--active" type="button" data-mode="url" aria-pressed="true">
+                  URL
+                </button>
+                <button class="toggle-btn" type="button" data-mode="text" aria-pressed="false">
+                  Paste text
+                </button>
+              </div>
+
+              <div id="policy-url-input" class="policy-mode">
+                <label class="form-label" for="policy-url">Policy URL</label>
+                <input
+                  class="form-input"
+                  type="url"
+                  id="policy-url"
+                  name="policy-url"
+                  placeholder="https://example.com/privacy"
+                  autocomplete="off"
+                  autocapitalize="none"
+                  spellcheck="false"
+                />
+              </div>
+
+              <div id="policy-text-input" class="policy-mode" hidden>
+                <label class="form-label" for="policy-text">Policy text</label>
+                <textarea
+                  class="form-input form-textarea"
+                  id="policy-text"
+                  name="policy-text"
+                  rows="6"
+                  placeholder="Paste the privacy policy text here…"
+                  aria-describedby="policy-hint"
+                ></textarea>
+                <p class="form-hint" id="policy-hint">Plain text only. HTML tags will be stripped.</p>
+              </div>
+
+              <button class="btn btn--primary" type="submit" aria-label="Analyse privacy policy">
+                Analyse Policy
+              </button>
+            </form>
+
+            <div class="result-area" id="policy-result" aria-live="polite" aria-atomic="true" hidden>
+              <!-- Results injected by script.js -->
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- ====== FOOTER ====== -->
+      <footer class="site-footer" role="contentinfo">
+        <p class="footer-text">
+          PolicyPal &copy; <time datetime="2026">2026</time> &mdash;
+          <a class="footer-link" href="/privacy.html">Privacy</a> &middot;
+          <a class="footer-link" href="/terms.html">Terms</a>
+        </p>
+      </footer>
+
+    </div><!-- /#app -->
+
+    <script src="/script.js" defer></script>
+  </body>
+</html>
